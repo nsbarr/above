@@ -11,10 +11,7 @@ const nextConfig = {
     domains: [],
     remotePatterns: [],
   },
-  module.exports = {
-    output: 'export',
-    // Add other configurations here if needed
-  };  
+  output: 'export',
   distDir: '.next',
   basePath: process.env.NODE_ENV === 'production' ? '/above' : '',
   assetPrefix: process.env.NODE_ENV === 'production' ? '/above/' : '',
