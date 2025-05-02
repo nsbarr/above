@@ -54,6 +54,8 @@ jobs:
         run: pnpm install
       - name: Build with Next.js
         run: pnpm build
+      - name: Export static files
+        run: pnpm next export
       - name: Debug - List directories
         run: |
           echo "Current directory contents:"
@@ -67,7 +69,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./.next/out
+          path: ./out
+          
 
   # Deployment job
   deploy:
