@@ -84,7 +84,7 @@ export default function Home() {
           <h1 className="text-3xl md:text-4xl lg:text-4xl font-bold mb-6 leading-tight">Turn Chaos into Clarity</h1>
 
 <p className="mb-6 text-base">
-Founders face high-stakes decisions every day: 
+Startup founders face high-stakes decisions every day: 
 <br />
 <br />
 <i>Raise or bootstrap? Hire or stay lean? Pivot or persevere?</i> 
