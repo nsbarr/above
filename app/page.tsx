@@ -91,7 +91,7 @@ Startup founders face high-stakes decisions every day:
 </p>
 
 <p className="mb-6 text-base">
-These are more than just strategic questions - they're also deeply personal. So data alone won't get you the right answer. You need to understand what's driving you and where you truly want to go. 
+These aren't just strategic questions - they're deeply personal. So data alone won't get you the right answer. You need to understand what's driving you and where you truly want to go. 
 </p>
 
 <p className="mb-6 text-base">
