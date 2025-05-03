@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+module.exports = {
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -24,4 +24,7 @@ const nextConfig = {
   trailingSlash: true,
 }
 
-export default nextConfig
+// This is crucial for GitHub pages deployment
+if (process.env.NODE_ENV === 'production') {
+  console.log('Building for production with export output to ./out directory')
+} 

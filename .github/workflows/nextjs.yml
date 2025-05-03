@@ -48,6 +48,18 @@ jobs:
         run: pnpm install
       - name: Build with Next.js
         run: pnpm build
+        env:
+          NODE_ENV: production
+      - name: Debug Build Output
+        run: |
+          echo "Current directory contents:"
+          ls -la
+          echo "Output directory contents (if exists):"
+          ls -la out || echo "Output directory not found"
+          echo "Next.js directory contents (if exists):"
+          ls -la .next || echo ".next directory not found"
+      - name: Ensure .nojekyll file exists
+        run: touch out/.nojekyll
       - name: Verify static files output
         run: ls -la out || echo "Output directory not found"
       - name: Upload artifact
