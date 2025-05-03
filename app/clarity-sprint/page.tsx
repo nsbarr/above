@@ -40,12 +40,20 @@ export default function ClaritySprint() {
                 <li className="mb-2">Private Slack community</li>
                 <li className="mb-2">Tailored leadership frameworks and tools</li>
               </ul>
-              <Link
-                href="#"
-                className="inline-block btn-celestial px-6 py-3 rounded-full font-sans font-medium"
-              >
-                Apply for the Next Cohort
-              </Link>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link
+                  href="#"
+                  className="inline-block btn-celestial px-6 py-3 rounded-full font-sans font-medium active:opacity-70 active:scale-95 transition-transform duration-75"
+                >
+                  Apply for the Next Cohort
+                </Link>
+                <Link 
+                  href="/clarity-quiz"
+                  className="inline-flex items-center text-clarity font-medium hover:underline mt-4 sm:mt-3 active:opacity-70"
+                >
+                  Take the Clarity Quiz First <ArrowUpFromLine className="h-4 w-4 ml-2 transform rotate-90" />
+                </Link>
+              </div>
             </div>
           </div>
 
@@ -116,7 +124,7 @@ export default function ClaritySprint() {
             </div>
             
             <div className="mt-12 text-center">
-              <Link href="#" className="inline-block px-8 py-3 bg-celestial-gold text-midnight font-medium rounded-full hover:bg-white transition-colors">
+              <Link href="#" className="inline-block px-8 py-3 bg-celestial-gold text-midnight font-medium rounded-full hover:bg-white transition-colors active:opacity-70 active:scale-95">
                 Download Full Program Details
               </Link>
             </div>
@@ -159,7 +167,7 @@ export default function ClaritySprint() {
             </div>
             
             <div className="mt-12 text-center">
-              <Link href="#" className="inline-block btn-celestial px-8 py-3 rounded-full font-medium">
+              <Link href="#" className="inline-block btn-celestial px-8 py-3 rounded-full font-medium active:opacity-70 active:scale-95 transition-transform duration-75">
                 Apply for the Clarity Sprint
               </Link>
             </div>
