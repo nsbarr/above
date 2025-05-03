@@ -74,12 +74,6 @@ jobs:
           # Ensure each page has the CSS loaded class added by default
           find . -name "*.html" -exec sed -i 's/<html/<html class="css-loaded"/' {} \;
           
-          # Add preload for main CSS file to prevent FOUC
-          find . -name "*.html" -exec sed -i 's/<\/head>/<link rel="preload" href="\/above\/_next\/static\/css\/.*\.css" as="style" crossorigin="anonymous"><\/head>/' {} \;
-          
-          # Move stylesheet links to the top of head
-          find . -name "*.html" -exec sed -i 's/<head>/<head><link rel="stylesheet" href="\/above\/_next\/static\/css\/.*\.css" crossorigin="anonymous">/' {} \;
-          
           echo "Path fixing completed."
       - name: Verify static files output
         run: ls -la out || echo "Output directory not found"

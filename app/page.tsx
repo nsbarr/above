@@ -60,25 +60,6 @@ export default function Home() {
           font-size: 1.125rem;
           background-color: var(--cosmic-bg);
           color: var(--text-primary);
-          /* Prevent layout shifts during scrolling */
-          overflow-y: scroll;
-        }
-        
-        /* Ensure elements with dynamic content have stable layout */
-        .testimonial-card, .aspect-video, .bg-midnight, section {
-          contain: layout paint;
-          content-visibility: auto;
-        }
-        
-        /* Prevent CLS (Cumulative Layout Shift) */
-        img, iframe {
-          aspect-ratio: attr(width) / attr(height);
-        }
-        
-        /* Prevent iframe-based layout shifts */
-        iframe {
-          display: block;
-          width: 100%;
         }
         
         h1, h2, h3, h4, h5, h6, .font-sans, nav {
@@ -269,18 +250,16 @@ Moon Above offers tools, community, and coaching to help founders lead from self
         </div>
 
         <div className="lg:w-1/2 mt-8 lg:mt-0">
-          <div className="relative overflow-hidden" style={{ minHeight: "500px" }}>
+          <div className="relative overflow-hidden">
             <GitHubImage
               src="/moon8.png"
               alt="Animated illustration of a moon"
               width={500}
               height={500}
               className="w-full h-auto"
-              priority
-              style={{
-                contentVisibility: 'auto',
-                objectFit: 'contain',
-              }}
+              loading="lazy"
+              fetchPriority="low"
+              style={{contentVisibility: 'auto'}}
             />
           </div>
         </div>
@@ -289,7 +268,7 @@ Moon Above offers tools, community, and coaching to help founders lead from self
       {/* Three Modules Section */}
       <section className="py-16 bg-gray-50 mt-16 rounded-lg">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12 section-heading">How Do You Want to Get Clear?</h2>
+          <h2 className="text-3xl font-bold text-center mb-12 section-heading">How We Can Help</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Module 1 */}
             <div className="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
@@ -355,7 +334,7 @@ Moon Above offers tools, community, and coaching to help founders lead from self
                 Learning to recognize where you are in relation to the line and developing the ability to shift your state is a transformative practice for founders and leaders.
               </p>
             </div>
-            <div className="aspect-video" style={{ minHeight: "315px" }}>
+            <div className="aspect-video">
               <iframe 
                 className="w-full h-full rounded-lg shadow-lg"
                 src="https://www.youtube.com/embed/fLqzYDZAqCI" 
@@ -395,7 +374,7 @@ Moon Above offers tools, community, and coaching to help founders lead from self
                           : 'opacity-40 scale-95'
                       }`}
                     >
-                      <blockquote className="text-xl md:text-2xl font-medium mb-6" style={{ minHeight: "320px" }}>
+                      <blockquote className="text-xl md:text-2xl font-medium mb-6">
                         <span className="text-gray-500">"</span>
                         {testimonial.quote.split('.').map((sentence, sentIndex, array) => {
                           // Highlight key phrases for Filip's testimonial (first testimonial)
@@ -478,14 +457,13 @@ Moon Above offers tools, community, and coaching to help founders lead from self
                       </blockquote>
                       
                       <div className="flex items-center mt-6">
-                        <div className="mr-6" style={{ minHeight: "96px", minWidth: "96px" }}>
+                        <div className="mr-6">
                           <GitHubImage
                             src={testimonial.image}
                             alt={testimonial.name}
                             width={124}
                             height={124}
                             className="rounded-full h-24 w-24 object-cover avatar-glow"
-                            priority={index === 0}
                           />
                         </div>
                         <div>
@@ -563,7 +541,6 @@ Moon Above offers tools, community, and coaching to help founders lead from self
                 height={500}
                 className="rounded-lg shadow-lg"
                 priority
-                style={{ height: "auto", maxHeight: "500px" }}
               />
             </div>
           </div>
