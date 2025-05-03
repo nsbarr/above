@@ -3,8 +3,6 @@ import "./globals.css"
 import type { Metadata } from "next"
 import { Outfit, Newsreader } from "next/font/google"
 import Script from "next/script"
-import fs from 'fs'
-import path from 'path'
 
 // Load fonts with display:swap for better font loading
 const newsreader = Newsreader({
@@ -22,14 +20,44 @@ const outfit = Outfit({
   display: 'swap',
 })
 
-// Read critical CSS at build time
-let criticalCSS = ''
-try {
-  const cssPath = path.join(process.cwd(), 'public', 'inline-critical.css')
-  criticalCSS = fs.readFileSync(cssPath, 'utf8')
-} catch (e) {
-  console.error('Could not load critical CSS:', e)
+// Critical CSS directly inlined (no file system needed)
+const criticalCSS = `
+:root {
+  --midnight-blue: #1A2A48;
+  --moonlight-silver: #E8EAED;
+  --celestial-gold: #FFDF7E;
+  --cosmic-bg: #F6F8FA;
+  --text-primary: #1A2A48;
 }
+
+body {
+  font-family: Georgia, serif;
+  background-color: var(--cosmic-bg, #F6F8FA);
+  color: var(--text-primary, #1A2A48);
+  margin: 0;
+  opacity: 0;
+  transition: opacity 0.2s ease-in;
+}
+
+html.css-loaded body {
+  opacity: 1;
+}
+
+.btn-celestial {
+  background-color: var(--midnight-blue, #1A2A48);
+  color: var(--moonlight-silver, #E8EAED);
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+/* Hide until loaded fully */
+img[src*="moon8.png"] {
+  content-visibility: auto;
+}
+`;
 
 export const metadata: Metadata = {
   title: "Moon Above Leadership Coaching",
@@ -48,22 +76,16 @@ export default function RootLayout({
         {/* Inline critical CSS directly */}
         <style dangerouslySetInnerHTML={{ __html: criticalCSS }} />
         
-        {/* Anti-FOUC script */}
+        {/* Anti-FOUC and path fixing scripts */}
         <Script id="prevent-fouc" strategy="beforeInteractive">{`
-          // Add class to html element as early as possible
+          // Add class to html element as early as possible to prevent FOUC
           document.documentElement.classList.add('css-loaded');
-          // Hide body until ready
-          document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-              document.body.classList.remove('no-fouc');
-            }, 0);
-          });
         `}</Script>
         
         {/* Github Pages path fixing */}
         <Script src="/fix-image-paths.js" strategy="beforeInteractive" />
       </head>
-      <body className={`${newsreader.variable} ${outfit.variable} no-fouc`}>
+      <body className={`${newsreader.variable} ${outfit.variable}`}>
         {children}
       </body>
     </html>
