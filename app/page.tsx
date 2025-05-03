@@ -551,7 +551,7 @@ Moon Above offers tools, community, and coaching to help founders lead from self
           <h2 className="text-3xl font-bold text-center mb-8 section-heading">Stay in the Loop</h2>
           <div className="max-w-2xl mx-auto text-center mb-8">
             <p className="text-lg">
-              Join our newsletter for insights on leadership, mindfulness practices, and updates on upcoming cohorts and offerings. We respect your inbox.
+              Join the newsletter for insights on leadership, practices, and updates on upcoming cohorts and offerings. I respect your inbox.
             </p>
           </div>
           <div className="flex justify-center">

@@ -15,26 +15,19 @@
   
   const basePath = match[0];
   
-  // Check all images on the page
+  // Fix only image elements on the page
   document.addEventListener('DOMContentLoaded', () => {
+    // Fix image sources, but only for actual images (not CSS, JS, etc.)
     const images = document.querySelectorAll('img');
     
     images.forEach(img => {
       const src = img.getAttribute('src');
-      if (src && src.startsWith('/') && !src.startsWith(basePath)) {
+      if (src && src.startsWith('/') && !src.startsWith(basePath) && 
+          /\.(png|jpg|jpeg|gif|webp|svg|ico)$/.test(src)) {
         img.setAttribute('src', `${basePath}${src}`);
       }
     });
     
-    // Also fix background images in CSS
-    const styles = document.querySelectorAll('style');
-    styles.forEach(style => {
-      if (style.textContent) {
-        style.textContent = style.textContent.replace(
-          /url\(['"]?\/((?!http)[^'")]+)['"]?\)/g, 
-          `url('${basePath}/$1')`
-        );
-      }
-    });
+    // Don't attempt to fix CSS as it causes more problems
   });
 })(); 
