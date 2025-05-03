@@ -12,7 +12,7 @@ const nextConfig = {
     remotePatterns: [],
   },
   output: 'export',
-  distDir: '.next',
+  distDir: 'out',
   basePath: process.env.NODE_ENV === 'production' ? '/above' : '',
   assetPrefix: process.env.NODE_ENV === 'production' ? '/above/' : '',
   // Ensure no page is using an Image component with a remote source
