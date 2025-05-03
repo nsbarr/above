@@ -2,8 +2,42 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --midnight-blue: #1A2A48;
+  --moonlight-silver: #E8EAED;
+  --celestial-gold: #FFDF7E;
+  --clarity-teal: #2C6D7A;
+  --twilight-purple: #634B7F;
+  --cosmic-bg: #F6F8FA;
+  --text-primary: #1A2A48;
+  --text-secondary: #2D3748;
+}
+
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-serif, Georgia, serif);
+  background-color: var(--cosmic-bg);
+  color: var(--text-primary);
+  font-size: 1.125rem;
+}
+
+h1, h2, h3, h4, h5, h6, .font-sans, nav {
+  font-family: var(--font-sans, Arial, sans-serif);
+  color: var(--midnight-blue);
+}
+
+.btn-celestial {
+  background-color: var(--midnight-blue);
+  color: var(--moonlight-silver);
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 500;
+}
+
+.celestial-card {
+  background: linear-gradient(145deg, #f8f9fa, #eaeaea);
+  box-shadow: 0 4px 20px rgba(26, 42, 72, 0.08);
+  border: 1px solid rgba(232, 234, 237, 0.6);
 }
 
 @layer utilities {
