@@ -2,8 +2,8 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { CirclePlus, ArrowUpFromLine, SunMoon, Moon } from "lucide-react"
-import { useState, useEffect } from "react"
+import { CirclePlus,ArrowUpFromLine, SunMoon, Moon } from "lucide-react"
+import { useState } from "react"
 import GitHubImage from "@/components/ui/github-image"
 import dynamic from 'next/dynamic'
 import Navigation from '../components/Navigation'
@@ -12,21 +12,8 @@ import GlobalStyles from '../components/GlobalStyles'
 // Create a dynamic component for the Substack iframe
 const SubstackEmbed = dynamic(() => import('../components/SubstackEmbed'), { ssr: false })
 
-// Debug render counter
-let renderCount = 0;
-
 export default function Home() {
   const [activeTestimonial, setActiveTestimonial] = useState(0)
-  
-  // Log render count to help debug excessive renders
-  useEffect(() => {
-    renderCount++;
-    console.log(`[DEBUG] Home page render #${renderCount}`);
-    
-    return () => {
-      console.log(`[DEBUG] Home page unmounting after ${renderCount} renders`);
-    };
-  }, []);
   
   const testimonials = [
     {
@@ -93,8 +80,8 @@ Moon Above offers tools, community, and coaching to help founders lead from self
 
 
           <Link
-            href="/clarity-quiz"
-            className="inline-block btn-celestial px-6 py-3 rounded-full font-sans font-medium active:opacity-70 active:scale-95 transition-transform duration-75"
+            href="#"
+            className="inline-block btn-celestial px-6 py-3 rounded-full font-sans font-medium"
           >
             Take the Clarity Quiz
           </Link>
@@ -132,7 +119,7 @@ Moon Above offers tools, community, and coaching to help founders lead from self
               <p className="text-gray-600 mb-4">
                 Take our assessment to identify your leadership patterns and discover your unique strengths and blind spots.
               </p>
-              <Link href="#" className="text-clarity font-medium hover:underline inline-flex items-center active:opacity-70">
+              <Link href="#" className="text-clarity font-medium hover:underline inline-flex items-center">
                 Take Assessment <ArrowUpFromLine className="h-4 w-4 ml-2 transform rotate-90" />
               </Link>
             </div>
@@ -146,7 +133,7 @@ Moon Above offers tools, community, and coaching to help founders lead from self
               <p className="text-gray-600 mb-4">
                 Connect with like-minded founders in a confidential space to share challenges, insights, and grow together.
               </p>
-              <Link href="#" className="text-clarity font-medium hover:underline inline-flex items-center active:opacity-70">
+              <Link href="#" className="text-clarity font-medium hover:underline inline-flex items-center">
                 Learn More <ArrowUpFromLine className="h-4 w-4 ml-2 transform rotate-90" />
               </Link>
             </div>
@@ -160,7 +147,7 @@ Moon Above offers tools, community, and coaching to help founders lead from self
               <p className="text-gray-600 mb-4">
                 Work directly with a coach to address your specific challenges and accelerate your leadership growth.
               </p>
-              <Link href="#" className="text-clarity font-medium hover:underline inline-flex items-center active:opacity-70">
+              <Link href="#" className="text-clarity font-medium hover:underline inline-flex items-center">
                 Book a Session <ArrowUpFromLine className="h-4 w-4 ml-2 transform rotate-90" />
               </Link>
             </div>
@@ -383,14 +370,9 @@ Moon Above offers tools, community, and coaching to help founders lead from self
               <p className="mb-6 text-lg">
                 This work is personal for me. I have lived the emotional complexity of solo founding: the ambiguity, the isolation, the self-questioning. I know how hard it can be to lead when your inner and outer worlds are in chaos — and how powerful it is to lead when you're grounded and clear.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link href="/clarity-quiz" className="text-clarity font-medium hover:underline inline-flex items-center active:opacity-70">
-                  Take the Founder Clarity Quiz <ArrowUpFromLine className="h-4 w-4 ml-2 transform rotate-90" />
-                </Link>
-                <Link href="https://www.nsbarr.com/" className="text-clarity font-medium hover:underline inline-flex items-center active:opacity-70">
-                  Learn more about my 1:1 coaching <ArrowUpFromLine className="h-4 w-4 ml-2 transform rotate-90" />
-                </Link>
-              </div>
+              <Link href="https://www.nsbarr.com/" className="text-clarity font-medium hover:underline inline-flex items-center">
+                Learn more about my 1:1 coaching and org support <ArrowUpFromLine className="h-4 w-4 ml-2 transform rotate-90" />
+              </Link>
             </div>
             <div className="flex justify-center">
               <GitHubImage
@@ -398,9 +380,9 @@ Moon Above offers tools, community, and coaching to help founders lead from self
                 alt="Nick Barr, Leadership Coach"
                 width={400}
                 height={500}
-                className="rounded-lg shadow-lg object-cover"
+                className="rounded-lg shadow-lg"
                 priority
-                style={{ maxWidth: "100%", height: "auto" }}
+                style={{ height: "auto", maxHeight: "500px" }}
               />
             </div>
           </div>

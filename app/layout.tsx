@@ -28,7 +28,6 @@ const criticalCSS = `
   --celestial-gold: #FFDF7E;
   --cosmic-bg: #F6F8FA;
   --text-primary: #1A2A48;
-  --clarity-teal: #2C6D7A;
 }
 
 body {
@@ -52,17 +51,6 @@ html.css-loaded body {
   border-radius: 9999px;
   font-weight: 500;
   text-decoration: none;
-}
-
-/* Improved tap/click visual feedback */
-a, button {
-  touch-action: manipulation;
-}
-
-a:active, button:active {
-  transform: scale(0.98);
-  opacity: 0.9;
-  transition: transform 0.1s, opacity 0.1s;
 }
 
 /* Hide until loaded fully */
