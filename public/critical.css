@@ -1,0 +1,55 @@
+/* Critical CSS for Moon Above site */
+:root {
+  --midnight-blue: #1A2A48;
+  --moonlight-silver: #E8EAED;
+  --celestial-gold: #FFDF7E;
+  --clarity-teal: #2C6D7A;
+  --twilight-purple: #634B7F;
+  --cosmic-bg: #F6F8FA;
+  --text-primary: #1A2A48;
+  --text-secondary: #2D3748;
+}
+
+body {
+  font-family: ui-serif, serif;
+  font-size: 1.125rem;
+  background-color: var(--cosmic-bg);
+  color: var(--text-primary);
+  opacity: 1;
+  visibility: visible;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--midnight-blue);
+  font-family: ui-sans-serif, sans-serif;
+}
+
+p {
+  color: var(--text-secondary);
+}
+
+.btn-celestial {
+  background-color: var(--midnight-blue);
+  color: var(--moonlight-silver);
+  transition: all 0.3s ease;
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 500;
+}
+
+.celestial-card {
+  background: linear-gradient(145deg, #f8f9fa, #eaeaea);
+  box-shadow: 0 4px 20px rgba(26, 42, 72, 0.08);
+  border: 1px solid rgba(232, 234, 237, 0.6);
+}
+
+/* Hide content until CSS is ready to avoid FOUC */
+html:not(.css-loaded) body {
+  opacity: 0;
+}
+
+html.css-loaded body {
+  opacity: 1;
+  transition: opacity 0.2s ease-in;
+} 
