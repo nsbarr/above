@@ -62,14 +62,18 @@ jobs:
         run: touch out/.nojekyll
       - name: Fix image paths (if needed)
         run: |
-          echo "Fixing image paths in HTML files for GitHub Pages deployment..."
+          echo "Fixing paths and inlining critical CSS for GitHub Pages deployment..."
           # Create a simple sed command to replace image paths in HTML files
           cd out
-          # Replace src="/... with src="/above/... but only for images, not for CSS or JS
+          # Replace src="/... with src="/above/... but only for images
           find . -name "*.html" -exec sed -i 's/src="\([^"]*\.\(png\|jpg\|jpeg\|gif\|webp\|svg\|ico\)\)"/src="\/above\1"/g' {} \;
           # Be careful with href attributes - only modify page links, not CSS/JS asset links
           find . -name "*.html" -exec sed -i 's/href="\(\/[^"_][^"]*\)"/href="\/above\1"/g' {} \;
           # Don't modify _next/ references which are CSS/JS assets
+          
+          # Ensure each page has the CSS loaded class added by default
+          find . -name "*.html" -exec sed -i 's/<html/<html class="css-loaded"/' {} \;
+          
           echo "Path fixing completed."
       - name: Verify static files output
         run: ls -la out || echo "Output directory not found"
