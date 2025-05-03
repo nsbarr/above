@@ -3,21 +3,26 @@ import "./globals.css"
 import type { Metadata } from "next"
 import { Outfit, Newsreader } from "next/font/google"
 import Script from "next/script"
-import Head from "next/head"
 
-// Load a more subdued serif font - Newsreader
+// Load a more subdued serif font - Newsreader with optimized loading
 const newsreader = Newsreader({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
   style: ['normal', 'italic'],
   variable: '--font-serif',
+  display: 'swap',
+  preload: true,
+  fallback: ['Georgia', 'serif']
 })
 
-// Load Outfit for headings
+// Load Outfit for headings with optimized loading
 const outfit = Outfit({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
   variable: '--font-sans',
+  display: 'swap',
+  preload: true,
+  fallback: ['Arial', 'sans-serif']
 })
 
 export const metadata: Metadata = {
@@ -32,8 +37,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className="css-loaded">
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <Script src="/fix-image-paths.js" strategy="beforeInteractive" />
         <Script src="/preload-styles.js" strategy="beforeInteractive" />
         <link 
@@ -42,23 +49,22 @@ export default function RootLayout({
           precedence="high"
         />
         <style dangerouslySetInnerHTML={{ __html: `
-          /* Critical CSS to prevent Flash of Unstyled Content */
+          /* Ensure content is visible immediately with system fonts */
           body {
-            font-family: ui-serif, serif;
+            font-family: Georgia, serif;
             background-color: #F6F8FA;
             color: #1A2A48;
-            opacity: 0;
-            animation: fadeIn 0.2s ease-in forwards;
+            visibility: visible;
+            opacity: 1;
           }
           
-          @keyframes fadeIn {
-            to { opacity: 1; }
+          h1, h2, h3, h4, h5, h6, .font-sans, nav {
+            font-family: Arial, sans-serif;
           }
           
           .btn-celestial {
             background-color: #1A2A48;
             color: #E8EAED;
-            transition: all 0.3s ease;
             display: inline-block;
             padding: 0.75rem 1.5rem;
             border-radius: 9999px;
@@ -68,8 +74,12 @@ export default function RootLayout({
           .celestial-card {
             background: linear-gradient(145deg, #f8f9fa, #eaeaea);
             box-shadow: 0 4px 20px rgba(26, 42, 72, 0.08);
-            transition: all 0.3s ease;
             border: 1px solid rgba(232, 234, 237, 0.6);
+          }
+          
+          /* Hide moon image until fully loaded to avoid layout shifts */
+          img[src*="moon8.png"] {
+            content-visibility: auto;
           }
         `}} />
       </head>

@@ -257,7 +257,9 @@ Moon Above offers tools, community, and coaching to help founders lead from self
               width={500}
               height={500}
               className="w-full h-auto"
-              priority
+              loading="lazy"
+              fetchPriority="low"
+              style={{contentVisibility: 'auto'}}
             />
           </div>
         </div>
