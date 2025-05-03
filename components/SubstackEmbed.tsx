@@ -1,23 +1,9 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
-
-// Debug counter
-let substackRenderCount = 0;
+import { useEffect, useRef } from 'react'
 
 export default function SubstackEmbed() {
   const iframeRef = useRef<HTMLIFrameElement>(null)
-  const [isLoaded, setIsLoaded] = useState(false)
-  
-  // Debug logging
-  useEffect(() => {
-    substackRenderCount++;
-    console.log(`[DEBUG] SubstackEmbed render #${substackRenderCount}`);
-    
-    return () => {
-      console.log(`[DEBUG] SubstackEmbed unmounting after ${substackRenderCount} renders`);
-    };
-  }, []);
   
   useEffect(() => {
     const applySubstackStyling = () => {
@@ -29,27 +15,23 @@ export default function SubstackEmbed() {
         
         if (!iframeDoc) return
         
-        // Create a style element to inject custom CSS only once
-        if (!iframeDoc.getElementById('substack-custom-styles')) {
-          const styleEl = document.createElement('style')
-          styleEl.id = 'substack-custom-styles'
-          styleEl.textContent = `
-            .subscribe-btn.button-VFSdkv.buttonBase-GK1x3M {
-              background-color: var(--midnight-blue, #1A2A48) !important;
-              color: var(--moonlight-silver, #E8EAED) !important;
-              transition: all 0.3s ease !important;
-              border: none !important;
-            }
-            
-            .subscribe-btn.button-VFSdkv.buttonBase-GK1x3M:hover {
-              background-color: #283b64 !important;
-              box-shadow: 0 0 15px rgba(255, 223, 126, 0.4) !important;
-            }
-          `
+        // Create a style element to inject custom CSS
+        const styleEl = document.createElement('style')
+        styleEl.textContent = `
+          .subscribe-btn.button-VFSdkv.buttonBase-GK1x3M {
+            background-color: var(--midnight-blue, #1A2A48) !important;
+            color: var(--moonlight-silver, #E8EAED) !important;
+            transition: all 0.3s ease !important;
+            border: none !important;
+          }
           
-          iframeDoc.head.appendChild(styleEl)
-          setIsLoaded(true)
-        }
+          .subscribe-btn.button-VFSdkv.buttonBase-GK1x3M:hover {
+            background-color: #283b64 !important;
+            box-shadow: 0 0 15px rgba(255, 223, 126, 0.4) !important;
+          }
+        `
+        
+        iframeDoc.head.appendChild(styleEl)
       } catch (e) {
         console.warn('Could not style Substack iframe:', e)
       }
@@ -61,14 +43,13 @@ export default function SubstackEmbed() {
       if (iframe.contentDocument?.readyState === 'complete') {
         applySubstackStyling()
       } else {
-        const handleLoad = () => {
-          applySubstackStyling()
-          iframe.removeEventListener('load', handleLoad)
-        }
-        iframe.addEventListener('load', handleLoad)
-        return () => {
-          iframe.removeEventListener('load', handleLoad)
-        }
+        iframe.addEventListener('load', applySubstackStyling)
+      }
+    }
+
+    return () => {
+      if (iframe) {
+        iframe.removeEventListener('load', applySubstackStyling)
       }
     }
   }, [])
@@ -89,7 +70,6 @@ export default function SubstackEmbed() {
       title="Newsletter subscription form"
       className="rounded-md"
       ref={iframeRef}
-      suppressHydrationWarning={true}
     />
   )
 } 

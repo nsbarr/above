@@ -5,12 +5,28 @@ import { SunMoon } from "lucide-react"
 import { usePathname } from "next/navigation"
 import { useState, useEffect, useRef } from "react"
 
+// Debug render counter
+let navRenderCount = 0;
+
 export default function Navigation() {
   const pathname = usePathname()
   const [isClicked, setIsClicked] = useState<string | null>(null)
+  const renderCountRef = useRef(0);
+  
+  // Debug rendering
+  useEffect(() => {
+    navRenderCount++;
+    renderCountRef.current = navRenderCount;
+    console.log(`[DEBUG] Navigation render #${navRenderCount}, pathname: ${pathname}`);
+    
+    return () => {
+      console.log(`[DEBUG] Navigation unmounting after ${renderCountRef.current} renders`);
+    };
+  }, [pathname]);
   
   const handleClick = (href: string) => {
     setIsClicked(href)
+    // Reset after 300ms to remove active state
     setTimeout(() => setIsClicked(null), 300)
   }
   

@@ -1,0 +1,81 @@
+/* Critical CSS for Moon Above site */
+:root {
+  --midnight-blue: #1A2A48;
+  --moonlight-silver: #E8EAED;
+  --celestial-gold: #FFDF7E;
+  --clarity-teal: #2C6D7A;
+  --twilight-purple: #634B7F;
+  --cosmic-bg: #F6F8FA;
+  --text-primary: #1A2A48;
+  --text-secondary: #2D3748;
+  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Font fallbacks and default body styles */
+body {
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  line-height: 1.7;
+  background-color: var(--cosmic-bg);
+  color: var(--text-primary);
+  opacity: 1;
+  visibility: visible;
+  font-display: swap;
+}
+
+/* Headings should use sans-serif font by default */
+h1, h2, h3, h4, h5, h6, .font-sans, nav {
+  font-family: var(--font-sans);
+  color: var(--midnight-blue);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+}
+
+p {
+  font-family: var(--font-serif);
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  line-height: 1.7;
+}
+
+/* Critical UI components */
+.btn-celestial {
+  background-color: var(--midnight-blue);
+  color: var(--moonlight-silver);
+  transition: all 0.3s ease;
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  font-family: var(--font-sans);
+  text-decoration: none;
+}
+
+.celestial-card {
+  background: linear-gradient(145deg, #f8f9fa, #eaeaea);
+  box-shadow: 0 4px 20px rgba(26, 42, 72, 0.08);
+  border: 1px solid rgba(232, 234, 237, 0.6);
+}
+
+/* Font loading optimization */
+@font-face {
+  font-family: 'Fallback Serif';
+  size-adjust: 100%;
+  src: local('Georgia');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Fallback Sans';
+  size-adjust: 100%;
+  src: local('Arial');
+  font-display: swap;
+}
+
+/* Ensure content is visible */
+html.css-loaded body {
+  opacity: 1;
+  transition: opacity 0.2s ease-in;
+} 
