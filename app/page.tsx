@@ -4,6 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { CirclePlus,ArrowUpFromLine, SunMoon, Moon } from "lucide-react"
 import { useState } from "react"
+import GitHubImage from "@/components/ui/github-image"
 
 export default function Home() {
   const [activeTestimonial, setActiveTestimonial] = useState(0)
@@ -250,7 +251,7 @@ Moon Above offers tools, community, and coaching to help founders lead from self
 
         <div className="lg:w-1/2 mt-8 lg:mt-0">
           <div className="relative overflow-hidden">
-            <Image
+            <GitHubImage
               src="/moon8.png"
               alt="Animated illustration of a moon"
               width={500}
@@ -286,7 +287,7 @@ Moon Above offers tools, community, and coaching to help founders lead from self
               <div className="bg-gray-100 rounded-full w-12 h-12 flex items-center justify-center mb-4">
                 <span className="text-xl font-bold">2</span>
               </div>
-              <h3 className="text-xl font-bold mb-3">Join a Founder Circle</h3>
+              <h3 className="text-xl font-bold mb-3">Join a Clarity Sprint</h3>
               <p className="text-gray-600 mb-4">
                 Connect with like-minded founders in a confidential space to share challenges, insights, and grow together.
               </p>
@@ -455,7 +456,7 @@ Moon Above offers tools, community, and coaching to help founders lead from self
                       
                       <div className="flex items-center mt-6">
                         <div className="mr-6">
-                          <Image
+                          <GitHubImage
                             src={testimonial.image}
                             alt={testimonial.name}
                             width={124}
@@ -531,7 +532,7 @@ Moon Above offers tools, community, and coaching to help founders lead from self
               </Link>
             </div>
             <div className="flex justify-center">
-              <Image
+              <GitHubImage
                 src="/nb-headshot.jpg"
                 alt="Nick Barr, Leadership Coach"
                 width={400}
