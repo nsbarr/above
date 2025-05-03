@@ -544,6 +544,32 @@ Moon Above offers tools, community, and coaching to help founders lead from self
           </div>
         </div>
       </section>
+      
+      {/* Newsletter Section */}
+      <section className="py-16 mt-16 border-t border-gray-200">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-8 section-heading">Stay in the Loop</h2>
+          <div className="max-w-2xl mx-auto text-center mb-8">
+            <p className="text-lg">
+              Join our newsletter for insights on leadership, mindfulness practices, and updates on upcoming cohorts and offerings. We respect your inbox.
+            </p>
+          </div>
+          <div className="flex justify-center">
+            <div className="celestial-card p-2 rounded-lg shadow-sm overflow-hidden">
+              <iframe 
+                src="https://polytrope.substack.com/embed" 
+                width="480" 
+                height="150" 
+                style={{border:'1px solid #EEE', background:'white'}} 
+                frameBorder="0" 
+                scrolling="no"
+                title="Newsletter subscription form"
+                className="rounded-md"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
     {/* Consent Management */}

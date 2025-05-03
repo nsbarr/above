@@ -60,6 +60,18 @@ jobs:
           ls -la .next || echo ".next directory not found"
       - name: Ensure .nojekyll file exists
         run: touch out/.nojekyll
+      - name: Fix image paths (if needed)
+        run: |
+          echo "Fixing image paths in HTML files for GitHub Pages deployment..."
+          # Create a simple sed command to replace image paths in HTML files
+          cd out
+          # Replace src="/... with src="/above/...
+          find . -name "*.html" -exec sed -i 's/src="\//src="\/above\//g' {} \;
+          # Replace href="/... with href="/above/...
+          find . -name "*.html" -exec sed -i 's/href="\//href="\/above\//g' {} \;
+          # Also fix JS references to ensure static assets are loaded correctly
+          find . -name "*.js" -exec sed -i 's/"\/\(_next\)/"\/above\/\1/g' {} \;
+          echo "Path fixing completed."
       - name: Verify static files output
         run: ls -la out || echo "Output directory not found"
       - name: Upload artifact

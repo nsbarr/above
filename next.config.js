@@ -10,8 +10,6 @@ const nextConfig = {
     unoptimized: true,
     domains: [],
     remotePatterns: [],
-    loader: 'custom',
-    loaderFile: './image-loader.js',
   },
   output: 'export',
   distDir: 'out',

@@ -7,13 +7,25 @@ type GitHubImageProps = ImageProps & {
 export default function GitHubImage(props: GitHubImageProps) {
   const { src, ...rest } = props;
   
-  // Determine if we're in production (GitHub Pages)
-  const isProd = process.env.NODE_ENV === 'production';
+  // Get the base path directly from the window location in production
+  // This is more reliable than trying to use environment variables at build time
+  let basePath = '';
+  if (typeof window !== 'undefined') {
+    const pathname = window.location.pathname;
+    const match = pathname.match(/^\/[^/]+/);
+    if (match && match[0] !== '/') {
+      basePath = match[0];
+    }
+  }
   
-  // Adjust the src path for GitHub Pages
-  const imageSrc = typeof src === 'string' && src.startsWith('/') && isProd
-    ? `/above${src}`
-    : src;
+  // Adjust the src path
+  let imageSrc = src;
+  if (typeof src === 'string' && src.startsWith('/') && basePath) {
+    // Only add the base path if it's not already included in the src
+    if (!src.startsWith(basePath)) {
+      imageSrc = `${basePath}${src}`;
+    }
+  }
   
   return (
     <Image
