@@ -1,14 +1,27 @@
 import type React from "react"
 import "./globals.css"
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import { Outfit, Newsreader } from "next/font/google"
 
-const inter = Inter({ subsets: ["latin"] })
+// Load a more subdued serif font - Newsreader
+const newsreader = Newsreader({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  style: ['normal', 'italic'],
+  variable: '--font-serif',
+})
+
+// Load Outfit for headings
+const outfit = Outfit({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-sans',
+})
 
 export const metadata: Metadata = {
-  title: "Above the Line Leadership Coaching",
+  title: "Moon Above Leadership Coaching",
   description: "Founder coaching to help you lead from a place of clarity and joy.",
-    generator: 'v0.dev'
+  generator: 'v0.dev'
 }
 
 export default function RootLayout({
@@ -18,7 +31,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${newsreader.variable} ${outfit.variable}`}>{children}</body>
     </html>
   )
 }
