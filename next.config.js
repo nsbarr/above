@@ -1,6 +1,4 @@
 /** @type {import('next').NextConfig} */
-const isProd = process.env.NODE_ENV === 'production';
-
 const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
@@ -15,20 +13,10 @@ const nextConfig = {
   },
   output: 'export',
   distDir: 'out',
-  basePath: isProd ? '/above' : '',
-  assetPrefix: isProd ? '/above/' : '',
-  // Ensure no page is using an Image component with a remote source
-  experimental: {
-    images: {
-      allowFutureImage: true,
-    },
-  },
+  basePath: process.env.NODE_ENV === 'production' ? '/above' : '',
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/above/' : '',
+  experimental: {},
   trailingSlash: true,
-};
-
-// This is crucial for GitHub pages deployment
-if (isProd) {
-  console.log('Building for production with export output to ./out directory');
 }
 
-module.exports = nextConfig; 
+module.exports = nextConfig 
